@@ -1,0 +1,43 @@
+body {
+	background-color: black;
+	color: white;
+	font-family: "Comic Sans MS";
+	text-align: center;
+}
+
+h1 {
+	font-style: italic;
+}
+
+input {
+	color: black;
+}
+
+button {
+	color: black;
+}
+
+h3 {
+	text-decoration: underline;
+}
+
+ol {
+	list-style-position: inside;
+}
+
+li {
+	background-color: white;
+	color: black;
+}
+
+#devour {
+	display: inline-block;
+}
+
+#devourButton {
+	color: red;
+}
+
+#devouredList {
+	color: grey;
+}

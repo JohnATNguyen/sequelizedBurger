@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <h1>Eat-The-Burger</h1>
+    <div class="row">
+        <div id="image" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <img src="/assets/img/burgers.jpg">
+            <br>
+            <br>
+            <form action="/" method="POST">
+                <div>
+                    <label for="burger">Burger Name:</label>
+                    <input type="text" name="burger_name">
+                </div>
+                <button type="submit">Add Burger</button>
+            </form>
+        </div>
+        <div id="image" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <h3>Available Burgers</h3>
+            <br>
+            <ol>
+                {{#each burgers}} {{#unless this.devoured}}
+                <li>
+                    {{this.burger_name}}
+                    <form id="devour" action="/{{this.id}}?_method=PUT" method="POST">
+                        <input type="hidden" name="devoured" value="true">
+                        <button id="devourButton" type="submit">DEVOUR!</button>
+                    </form>
+                </li>
+                <br>
+                {{/unless}} {{/each}}
+            </ol>
+        </div>
+        <div id="devoured" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <h3>Devoured Burgers</h3>
+            <br>
+            <ol>
+                {{#each burgers}} {{#if this.devoured}}
+                <li id="devouredList">
+                    {{this.burger_name}}
+                </li>
+                <br>
+                {{/if}} {{/each}}
+            </ol>
+        </div>
+    </div>
+</div>
