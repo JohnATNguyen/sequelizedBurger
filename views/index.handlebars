@@ -3,12 +3,12 @@
     <div class="row">
         <div id="image" class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
             <img src="/assets/img/burgers.jpg">
-            <br>
-            <br>
             <form action="/" method="POST">
                 <div>
                     <label for="burger">Burger Name:</label>
                     <input type="text" name="burger_name">
+                    <label for="customer_name">Customer Name:</label>
+                    <input type="text" name="customer_name">
                 </div>
                 <button type="submit">Add Burger</button>
             </form>
@@ -20,6 +20,7 @@
                 {{#each burgers}} {{#unless this.devoured}}
                 <li>
                     {{this.burger_name}}
+                    (for {{this.customer.customer_name}})
                     <form id="devour" action="/{{this.id}}?_method=PUT" method="POST">
                         <input type="hidden" name="devoured" value="true">
                         <button id="devourButton" type="submit">DEVOUR!</button>
@@ -36,6 +37,7 @@
                 {{#each burgers}} {{#if this.devoured}}
                 <li id="devouredList">
                     {{this.burger_name}}
+                    (eaten by {{this.customer.customer_name}})
                 </li>
                 <br>
                 {{/if}} {{/each}}

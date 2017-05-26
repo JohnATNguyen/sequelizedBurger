@@ -4,19 +4,25 @@ var db = require('../models');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    db.burger.findAll({}).then(function(data) {
+    db.burger.findAll({ include: [db.customer] }).then(function(data) {
         var hbsObject = {
             burgers: data
         };
         res.render('index', hbsObject);
+        // res.json(data);
     });
 });
 
 router.post('/', function(req, res) {
-    db.burger.create({
-        burger_name: req.body.burger_name
-    }).then(function() {
-        res.redirect('/');
+    db.customer.create({
+        customer_name: req.body.customer_name
+    }).then(function(data) {
+        db.burger.create({
+            burger_name: req.body.burger_name,
+            customerId: data.dataValues.id
+        }).then(function(data) {
+            res.redirect('/');
+        });
     });
 });
 

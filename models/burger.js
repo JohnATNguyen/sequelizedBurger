@@ -9,7 +9,16 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: false
         }
     }, {
-        timestamps: false
+        timestamps: false,
+        classMethods: {
+            associate: function(models) {
+                burger.belongsTo(models.customer, {
+                    foreignKey: {
+                        allowNull: true
+                    }
+                });
+            }
+        }
     });
     return burger;
 }
