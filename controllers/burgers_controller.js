@@ -4,7 +4,10 @@ var db = require('../models');
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    db.burger.findAll({ include: [db.customer] }).then(function(data) {
+    db.burger.findAll({
+        include: [db.customer],
+        order: [['burger_name', 'ASC']]
+    }).then(function(data) {
         var hbsObject = {
             burgers: data
         };
